@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wall</title>
+    <link rel="stylesheet" href="/posts/style.css">
+    <script src="/posts/script.js" defer></script>
+</head>
+<body>
+    <% if(name !== null){ %>
+    <h1>Welcome <%=name%></h1>
+    <a href="/profile">go to profile</a>
+    <% }else{ %>
+    <a href="/login">login</a>
+    <% } %>
+    <!-- <button><a id="posts-link" href="/posts">posts</a></button> -->
+    <!-- <button><a id="chat-link" href="/chat">chat</a></button> -->
+    <main>
+        <% if(name !== null){ %>
+        <label for="post-body">Share a thought</label>
+        <textarea name="postBody" id="post-body" cols="30"></textarea>
+        <button id="btn-post">Post</button>
+        <% } %>
+        <% for(post of posts) { %>
+        <div class="post">
+            <div class="post-user"><%= post.user %></div>
+            <div class="post-body"><%= post.postBody %></div>
+        </div>
+        <% } %>
+
+    </main>
+
+</body>
+</html>

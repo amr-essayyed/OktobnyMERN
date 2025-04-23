@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Posts</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main>
+        <h1>Welcom to Your Posts Site</h1>
+        <% if(isLoggedIn){ %>
+        <button id="btn-logout"><a href="/profile">profile</a></button>
+        <% }else{ %>
+            <button id="btn-logout"><a href="/login">login</a></button>
+        <% } %>
+        <button id="btn-to-root"><a href="/posts">go to Wall</a></button>
+    </main>
+</body>
+</html>

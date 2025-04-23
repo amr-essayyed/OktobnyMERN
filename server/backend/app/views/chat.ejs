@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Chat with <%= him %></title>
+    <link rel="stylesheet" href="/chat/style.css">
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/chat/script.js" defer></script>
+
+</head>
+<body>
+    <a href="/">main</a>
+    <h1>Chats</h1>
+    <!-- <% if (chatMessages !== []) { %> -->
+    <main>
+        <header>
+            <i class="fa-solid fa-user"></i>
+            <span><%=him%></span>
+        </header>
+        <div class="chat">
+            <% for (let message of chatMessages){ %>
+                <% if(message.sender === him){ %>
+                <div class="chat-line his-line"><%=message.message%></div>
+                <% }else{ %>
+                    <div class="chat-line your-line"><%=message.message%></div>
+                <%}%>
+            <%}%>
+            <%}%>
+        </div>
+        <div class="message-box">
+            <textarea id="chat-line"></textarea>
+            <button id="btn-post">Send</button>
+        </div>
+    </main>
+</body>
+</html>
