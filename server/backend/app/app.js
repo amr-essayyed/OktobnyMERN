@@ -7,12 +7,7 @@ import bodyParser from 'body-parser';           // get library of http-request-b
 import cookieParser from "cookie-parser";
 import userRoutes from './users/routes.js';     // get the router (sub program) associated with /users endpoint requests 
 import postRoutes from './posts/routes.js';     
-import profileRoutes from './profile/routes.js';     
-import chatRoutes from './chat/routes.js';     
 import authRoutes from './auth/routes.js';     
-import mainRutes from './main/routes.js';
-import {Server} from 'socket.io';
-import { onConnectionHndl,socketMW } from './chat/socket.js';
 import cors from 'cors'; // Cross-Origin Resource Sharing
 
 const __filename = fileURLToPath(import.meta.url);
@@ -34,23 +29,13 @@ console.log(path.join(__projdir, '/server/public/assets'));
 app.use(express.static(path.join(__dirname, '../../../client/dist')));
 console.log(path.join(__dirname, '../../../client/dist'));
 
-// app.get('/', mainRutes)
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes); // Mount the router on the root path
 app.use('/posts', postRoutes);
-app.use('/profile', profileRoutes);
-// app.use('/chats', chatRoutes);
 
-let httpServer;
-export let io;
 //todo: listen to event 'DBConnected'
 export default async function startServer() {
     await connectToDB();
-    httpServer = app.listen( 8080, ()=>console.log("listening on port 8080") );
-    io = new Server(httpServer); // new web socket server
-
-    io.use(socketMW);
-
-    io.on('connection', onConnectionHndl);
+    app.listen( 8080, ()=>console.log("listening on port 8080") );
 }
 
